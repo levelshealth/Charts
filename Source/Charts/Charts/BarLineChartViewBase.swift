@@ -215,9 +215,13 @@ open class BarLineChartViewBase: ChartViewBase, BarLineScatterCandleBubbleChartD
             rightYAxisRenderer.renderGridLines(context: context)
         }
         
-        if _xAxis.isEnabled && _xAxis.isDrawLimitLinesBehindDataEnabled
+        if _xAxis.isEnabled
         {
-            xAxisRenderer.renderLimitLines(context: context)
+            if _xAxis.isDrawLimitLinesBehindDataEnabled
+            {
+                xAxisRenderer.renderLimitLines(context: context)
+            }
+            xAxisRenderer.renderRangeSeparators(context: context)
         }
         
         if leftAxis.isEnabled && leftAxis.isDrawLimitLinesBehindDataEnabled
@@ -255,9 +259,13 @@ open class BarLineChartViewBase: ChartViewBase, BarLineScatterCandleBubbleChartD
         
         renderer.drawExtras(context: context)
         
-        if _xAxis.isEnabled && !_xAxis.isDrawLimitLinesBehindDataEnabled
+        if _xAxis.isEnabled
         {
-            xAxisRenderer.renderLimitLines(context: context)
+            if(!_xAxis.isDrawLimitLinesBehindDataEnabled)
+            {
+                xAxisRenderer.renderLimitLines(context: context)
+            }
+            xAxisRenderer.renderRangeSeparators(context: context)
         }
         
         if leftAxis.isEnabled && !leftAxis.isDrawLimitLinesBehindDataEnabled

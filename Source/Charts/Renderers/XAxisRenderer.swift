@@ -340,6 +340,142 @@ open class XAxisRenderer: AxisRendererBase
         }
     }
     
+    open override func renderRangeSeparators(context: CGContext)
+    {
+        guard
+        let xAxis = self.axis as? XAxis,
+        let transformer = self.transformer,
+        !xAxis.rangeSeparators.isEmpty
+        else { return }
+        
+        let trans = transformer.valueToPixelMatrix
+        
+        var position = CGPoint(x: 0.0, y: 0.0)
+        var positionAlt = CGPoint(x: 0.0, y: 0.0)
+        
+        for l in xAxis.rangeSeparators where l.isEnabled
+        {
+            context.saveGState()
+            defer { context.restoreGState() }
+            
+            var clippingRect = viewPortHandler.contentRect
+            clippingRect.origin.x -= l.lineWidth / 2.0
+            clippingRect.size.width += l.lineWidth
+            context.clip(to: clippingRect)
+            
+            position.x = CGFloat(l.from)
+            position.y = 0.0
+            position = position.applying(trans)
+            
+            // display the first line
+            renderRangeSeparatorLine(context: context, rangeSeparator: l, position: position)
+            // display the text in the middle of the two lines
+            position.x = CGFloat(l.from + (l.to - l.from)/2)
+            position = position.applying(trans)
+            renderRangeSeparatorLabel(context: context, rangeSeparator: l, position: position, yOffset: 2.0 + l.yOffset)
+            
+            // display the second line
+            position.x = CGFloat(l.to)
+            position = position.applying(trans)
+            renderRangeSeparatorLine(context: context, rangeSeparator: l, position: position)
+            
+            // display the bottom line
+            position.x = CGFloat(l.from)
+            positionAlt.x = CGFloat(l.to)
+            position = position.applying(trans)
+            positionAlt = positionAlt.applying(trans)
+            renderRangeSeparatorBottomLine(context: context, rangeSeparator: l, position: position, finalPosition: positionAlt)
+            
+            
+            //display the icon
+            if let icon = l.icon
+            {
+                position.x = CGFloat(l.from + (l.to - l.from)/2)
+                position = position.applying(trans)
+                ChartUtils.drawImage(
+                    context: context,
+                    image: icon,
+                    x: position.x - l.iconXOffset,
+                    y: viewPortHandler.contentBottom-l.iconYOffset,
+                    size: icon.size)
+            }
+        }
+    }
+    
+    @objc open func renderRangeSeparatorBottomLine(context: CGContext, rangeSeparator: ChartRangeSeparator, position: CGPoint, finalPosition: CGPoint)
+    {
+        
+        context.beginPath()
+        context.move(to: CGPoint(x: position.x, y: viewPortHandler.contentBottom))
+        context.addLine(to: CGPoint(x: finalPosition.x, y: viewPortHandler.contentBottom))
+        
+        context.setStrokeColor(rangeSeparator.bottomLineColor.cgColor)
+        context.setLineWidth(rangeSeparator.bottomLineWidth)
+        if rangeSeparator.bottomLineDashLengths != nil
+        {
+            context.setLineDash(phase: rangeSeparator.bottomLineDashPhase, lengths: rangeSeparator.bottomLineDashLengths!)
+        }
+        else
+        {
+            context.setLineDash(phase: 0.0, lengths: [])
+        }
+        
+        context.strokePath()
+    }
+    
+    @objc open func renderRangeSeparatorLine(context: CGContext, rangeSeparator: ChartRangeSeparator, position: CGPoint)
+    {
+        
+        context.beginPath()
+        context.move(to: CGPoint(x: position.x, y: viewPortHandler.contentBottom - rangeSeparator.height))
+        context.addLine(to: CGPoint(x: position.x, y: viewPortHandler.contentBottom))
+        
+        context.setStrokeColor(rangeSeparator.lineColor.cgColor)
+        context.setLineWidth(rangeSeparator.lineWidth)
+        if rangeSeparator.lineDashLengths != nil
+        {
+            context.setLineDash(phase: rangeSeparator.lineDashPhase, lengths: rangeSeparator.lineDashLengths!)
+        }
+        else
+        {
+            context.setLineDash(phase: 0.0, lengths: [])
+        }
+        
+        context.strokePath()
+    }
+    
+    @objc open func renderRangeSeparatorLabel(context: CGContext, rangeSeparator: ChartRangeSeparator, position: CGPoint, yOffset: CGFloat)
+    {
+        
+        let label = rangeSeparator.label
+        guard rangeSeparator.drawLabelEnabled, !label.isEmpty else { return }
+
+        let labelLineHeight = rangeSeparator.valueFont.lineHeight
+
+        let xOffset: CGFloat = rangeSeparator.lineWidth + rangeSeparator.xOffset
+        let attributes: [NSAttributedString.Key : Any] = [
+            .font : rangeSeparator.valueFont,
+            .foregroundColor : rangeSeparator.valueTextColor
+        ]
+
+        let (point, align): (CGPoint, NSTextAlignment)
+        
+        point = CGPoint(
+            x: position.x - xOffset,
+            y: viewPortHandler.contentBottom - labelLineHeight - yOffset
+        )
+        align = .center
+        
+
+        ChartUtils.drawText(
+            context: context,
+            text: label,
+            point: point,
+            align: align,
+            attributes: attributes
+        )
+    }
+    
     open override func renderLimitLines(context: CGContext)
     {
         guard

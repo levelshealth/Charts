@@ -58,6 +58,14 @@ open class AxisBase: ComponentBase
     {
         get { return centerAxisLabelsEnabled }
     }
+    
+    /// array of range separators that can be set for the axis
+    private var _rangeSeparators = [ChartRangeSeparator]()
+    
+    /// Are the range separators drawn behind the data or in front of the data?
+    ///
+    /// **default**: false
+    @objc open var drawRangeSeparatorsBehindDataEnabled = false
 
     /// array of limitlines that can be set for the axis
     private var _limitLines = [ChartLimitLine]()
@@ -191,6 +199,11 @@ open class AxisBase: ComponentBase
     
     @objc open var isDrawLabelsEnabled: Bool { return drawLabelsEnabled }
     
+    /// Are the Range separators drawn behind the data or in front of the data?
+    ///
+    /// **default**: false
+    @objc open var isDrawRangeSeparatorsBehindDataEnabled: Bool { return drawRangeSeparatorsBehindDataEnabled }
+    
     /// Are the LimitLines drawn behind the data or in front of the data?
     /// 
     /// **default**: false
@@ -264,6 +277,35 @@ open class AxisBase: ComponentBase
     
     /// `true` if focing the y-label count is enabled. Default: false
     @objc open var isForceLabelsEnabled: Bool { return forceLabelsEnabled }
+    
+    // MARK: Range separators
+    
+    /// Adds a new ChartRangeSeparator to this axis.
+    @objc open func addRangeSeparator(_ separator: ChartRangeSeparator)
+    {
+        _rangeSeparators.append(separator)
+    }
+    
+    /// Removes the specified ChartRangeSeparator from the axis.
+    @objc open func removeRangeSeparator(_ separator: ChartRangeSeparator)
+    {
+        guard let i = _rangeSeparators.firstIndex(of: separator) else { return }
+        _rangeSeparators.remove(at: i)
+    }
+    
+    /// Removes all ChartRangeSeparator from the axis.
+    @objc open func removeAllRangeSeparators()
+    {
+        _rangeSeparators.removeAll(keepingCapacity: false)
+    }
+    
+    /// The LimitLines of this axis.
+    @objc open var rangeSeparators : [ChartRangeSeparator]
+    {
+        return _rangeSeparators
+    }
+    
+    // MARK: Limit Lines
     
     /// Adds a new ChartLimitLine to this axis.
     @objc open func addLimitLine(_ line: ChartLimitLine)
