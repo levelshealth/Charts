@@ -47,6 +47,11 @@ open class AxisRendererBase: Renderer
         fatalError("renderAxisLine() cannot be called on AxisRendererBase")
     }
     
+    @objc open func renderRangeSeparators(context: CGContext)
+    {
+        fatalError("renderRangeSeparators() cannot be called on AxisRendererBase")
+    }
+    
     /// Draws the LimitLines associated with this axis to the screen.
     @objc open func renderLimitLines(context: CGContext)
     {

@@ -135,6 +135,10 @@
 		5BEAED3C1ABC199F0013F194 /* ColoredLineChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BEAED3A1ABC199F0013F194 /* ColoredLineChartViewController.xib */; };
 		5BEAED401ABC1AC60013F194 /* SinusBarChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BEAED3E1ABC1AC60013F194 /* SinusBarChartViewController.m */; };
 		5BEAED411ABC1AC60013F194 /* SinusBarChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BEAED3F1ABC1AC60013F194 /* SinusBarChartViewController.xib */; };
+		9829693824DC4D7C00A5F611 /* LineChartRangeSeparatorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9829693724DC4D7C00A5F611 /* LineChartRangeSeparatorsViewController.swift */; };
+		9829693924DC4D7C00A5F611 /* LineChartRangeSeparatorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9829693724DC4D7C00A5F611 /* LineChartRangeSeparatorsViewController.swift */; };
+		9829693B24DC4F0800A5F611 /* LineChartRangeSeparatorsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9829693A24DC4F0800A5F611 /* LineChartRangeSeparatorsViewController.xib */; };
+		9829693C24DC4F0800A5F611 /* LineChartRangeSeparatorsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9829693A24DC4F0800A5F611 /* LineChartRangeSeparatorsViewController.xib */; };
 		B64D06EB1FB199130067418D /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B64D06EA1FB199130067418D /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -324,6 +328,8 @@
 		5BEAED3D1ABC1AC60013F194 /* SinusBarChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinusBarChartViewController.h; sourceTree = "<group>"; };
 		5BEAED3E1ABC1AC60013F194 /* SinusBarChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinusBarChartViewController.m; sourceTree = "<group>"; };
 		5BEAED3F1ABC1AC60013F194 /* SinusBarChartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SinusBarChartViewController.xib; sourceTree = "<group>"; };
+		9829693724DC4D7C00A5F611 /* LineChartRangeSeparatorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartRangeSeparatorsViewController.swift; sourceTree = "<group>"; };
+		9829693A24DC4F0800A5F611 /* LineChartRangeSeparatorsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineChartRangeSeparatorsViewController.xib; sourceTree = "<group>"; };
 		B64D06EA1FB199130067418D /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -404,6 +410,7 @@
 				225B36551F6EBA410005B3D5 /* HorizontalBarChartViewController.swift */,
 				225B364A1F6EBA410005B3D5 /* LineChart1ViewController.swift */,
 				225B36491F6EBA410005B3D5 /* LineChart2ViewController.swift */,
+				9829693724DC4D7C00A5F611 /* LineChartRangeSeparatorsViewController.swift */,
 				225B364F1F6EBA410005B3D5 /* LineChartFilledViewController.swift */,
 				225B36471F6EBA410005B3D5 /* LineChartTimeViewController.swift */,
 				225B36441F6EBA410005B3D5 /* MultipleLinesChartViewController.swift */,
@@ -444,6 +451,7 @@
 				5BDEDC401ABB7F73007D3A60 /* HorizontalBarChartViewController.xib */,
 				5BD8F0731AB89CE500566E05 /* LineChart1ViewController.xib */,
 				5BD47E5F1ABB3C91008FCEC6 /* LineChart2ViewController.xib */,
+				9829693A24DC4F0800A5F611 /* LineChartRangeSeparatorsViewController.xib */,
 				5BE6738E1D5B4E0900A87BA2 /* LineChartFilledViewController.xib */,
 				5BE673911D5B4E0900A87BA2 /* LineChartTimeViewController.xib */,
 				5BEAED211ABC0BE20013F194 /* MultipleBarChartViewController.xib */,
@@ -744,6 +752,7 @@
 				225B36861F6EBA640005B3D5 /* PositiveNegativeBarChartViewController.xib in Resources */,
 				225B36831F6EBA640005B3D5 /* NegativeStackedBarChartViewController.xib in Resources */,
 				225B36761F6EBA640005B3D5 /* BubbleChartViewController.xib in Resources */,
+				9829693C24DC4F0800A5F611 /* LineChartRangeSeparatorsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -780,6 +789,7 @@
 				5BEAED1E1ABBFB340013F194 /* StackedBarChartViewController.xib in Resources */,
 				5B1B5DAB1E911A15006D1375 /* RealmDemosViewController.xib in Resources */,
 				55E356501ADC638F00A57971 /* BubbleChartViewController.xib in Resources */,
+				9829693B24DC4F0800A5F611 /* LineChartRangeSeparatorsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -819,6 +829,7 @@
 				225B36651F6EBA470005B3D5 /* BubbleChartViewController.swift in Sources */,
 				225B36381F6EBA040005B3D5 /* IntAxisValueFormatter.swift in Sources */,
 				225B365D1F6EBA470005B3D5 /* HalfPieChartViewController.swift in Sources */,
+				9829693924DC4D7C00A5F611 /* LineChartRangeSeparatorsViewController.swift in Sources */,
 				225B36701F6EBA470005B3D5 /* SinusBarChartViewController.swift in Sources */,
 				225B36681F6EBA470005B3D5 /* AnotherBarChartViewController.swift in Sources */,
 				225B36621F6EBA470005B3D5 /* NegativeStackedBarChartViewController.swift in Sources */,
@@ -830,6 +841,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9829693824DC4D7C00A5F611 /* LineChartRangeSeparatorsViewController.swift in Sources */,
 				5B613DF21D5A60DF000F1E98 /* LargeValueFormatter.swift in Sources */,
 				5BEAED1B1ABBFB340013F194 /* ScatterChartViewController.m in Sources */,
 				5B0CC7851ABB875400665592 /* PieChartViewController.m in Sources */,
